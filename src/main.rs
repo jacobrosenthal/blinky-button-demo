@@ -1,10 +1,8 @@
 #![no_main]
 #![no_std]
 
-use embedded_hal::digital::v2::InputPin;
-use embedded_hal::digital::v2::OutputPin;
-use nrf52840_hal as hal;
-use nrf52840_hal::gpio::Level;
+use embassy_nrf::gpio::{Input, Level, Output, OutputDrive, Pull};
+use embedded_hal::digital::v2::{InputPin, OutputPin};
 use rtt_target::{rprintln, rtt_init_print};
 
 #[panic_handler] // panicking behavior
@@ -17,10 +15,11 @@ fn panic(_: &core::panic::PanicInfo) -> ! {
 #[cortex_m_rt::entry]
 fn main() -> ! {
     rtt_init_print!();
-    let p = hal::pac::Peripherals::take().unwrap();
-    let port0 = hal::gpio::p0::Parts::new(p.P0);
-    let button = port0.p0_11.into_pullup_input();
-    let mut led = port0.p0_13.into_push_pull_output(Level::Low);
+
+    let p = embassy_nrf::init(Default::default());
+
+    let button = Input::new(p.P0_11, Pull::Up);
+    let mut led = Output::new(p.P0_13, Level::Low, OutputDrive::Standard);
 
     rprintln!("Blinky button demo starting");
     loop {
