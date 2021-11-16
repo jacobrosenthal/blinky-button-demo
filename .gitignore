@@ -1,0 +1,6 @@
+target
+*.rs.bk
+[._]*.sw[a-p]
+/target
+/.gdb_history
+private.key

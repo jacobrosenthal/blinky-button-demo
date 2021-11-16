@@ -1,0 +1,41 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "preLaunchTask": "${defaultBuildTask}",
+            "type": "probe-rs-debug",
+            "request": "launch",
+            "name": "probe_rs blinky-button-demo",
+            "cwd": "${workspaceFolder}",
+            "programBinary": "${workspaceRoot}/target/thumbv7em-none-eabihf/debug/blinky-button-demo", //!MODIFY
+            "chip": "nRF52840_xxAA",
+            "runtimeExecutable": "probe-rs-debugger",
+            "runtimeArgs": [
+                "debug",
+                "--dap"
+            ],
+            "coreIndex": 0,
+            "connectUnderReset": false,
+            "flashingEnabled": true,
+            "resetAfterFlashing": true,
+            "haltAfterReset": true,
+            "consoleLogLevel": "Error",
+            "svdFile": "${workspaceRoot}/.vscode/nrf52840.svd"
+        },
+        {
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "openocd",
+            "cwd": "${workspaceRoot}",
+            "executable": "${workspaceRoot}/target/thumbv7em-none-eabihf/debug/blinky-button-demo", //!MODIFY
+            "preLaunchTask": "${defaultBuildTask}",
+            "name": "Debug (OpenOCD)",
+            "device": "nrf52",
+            "configFiles": [
+                "board/nordic_nrf52_dk.cfg"
+            ],
+            "runToMain": true,
+            "svdFile": "${workspaceRoot}/.vscode/nrf52840.svd"
+        }
+    ]
+}
