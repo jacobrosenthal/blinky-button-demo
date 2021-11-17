@@ -18,9 +18,10 @@
             "connectUnderReset": false,
             "flashingEnabled": true,
             "resetAfterFlashing": true,
-            "haltAfterReset": true,
+            "haltAfterReset": false,
             "consoleLogLevel": "Error",
-            "svdFile": "${workspaceRoot}/.vscode/nrf52840.svd"
+            "svdFile": "${workspaceRoot}/.vscode/nrf52840.svd",
+            "rttEnabled": true,
         },
         {
             "type": "cortex-debug",
