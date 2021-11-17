@@ -10,6 +10,7 @@ cortex-m = "0.7.2"
 cortex-m-rt = "=0.6.15"
 rtt-target = { version = "0.2.0", features = ["cortex-m"] }
 embedded-hal = "0.2.5"
+embassy = { version = "0.1.0", git = "https://github.com/embassy-rs/embassy" }
 embassy-nrf = { version = "0.1.0", git = "https://github.com/embassy-rs/embassy", features = [
     "nrf52840",
     "gpiote",
